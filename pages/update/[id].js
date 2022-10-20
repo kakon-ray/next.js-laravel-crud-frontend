@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import Meta from '../../component/Meta';
 
 const updateProduct = ({params}) => {
 
   const [products,setProducts] = useState({})
+  const router = useRouter()
 
   const {id} = params;
   const getproducts = async() => {
@@ -41,6 +43,7 @@ const updateProduct = ({params}) => {
   .then(function (response) {
     console.log(response.data);
     getproducts()
+    router.back()
   })
   .catch(function (error) {
     console.log(error);
